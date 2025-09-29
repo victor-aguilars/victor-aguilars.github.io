@@ -1,0 +1,28 @@
+# Site settings
+title: Your Name
+email: your.email@example.com
+description: Web Developer | Building responsive and user-friendly applications
+baseurl: "" # Leave empty for GitHub Pages username.github.io
+url: "https://yourusername.github.io" # Update with your actual URL
+
+# Social media
+github_username: yourusername
+linkedin_username: yourlinkedin
+twitter_username: yourtwitter # Optional
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/

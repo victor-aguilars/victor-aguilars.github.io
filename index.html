@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>Hi, I'm <span class="highlight">{{ site.title }}</span></h1>
+    <p class="lead">{{ site.description }}</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container">
+    <h2>About Me</h2>
+    <p>I'm a passionate web developer with experience in modern web technologies. I love creating clean, efficient, and user-friendly applications that solve real-world problems.</p>
+    <p>When I'm not coding, you can find me learning new technologies, contributing to open source, or exploring the latest trends in web development.</p>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+      
+      <div class="project-card">
+        <h3>Project Name 1</h3>
+        <p class="tech-stack">HTML • CSS • JavaScript</p>
+        <p>A brief description of what this project does and the problem it solves. Highlight key features and technologies used.</p>
+        <div class="project-links">
+          <a href="#" target="_blank">Live Demo</a>
+          <a href="#" target="_blank">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Project Name 2</h3>
+        <p class="tech-stack">React • Node.js • MongoDB</p>
+        <p>Another project description showcasing your skills. Explain what makes this project unique and what you learned building it.</p>
+        <div class="project-links">
+          <a href="#" target="_blank">Live Demo</a>
+          <a href="#" target="_blank">Source Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Project Name 3</h3>
+        <p class="tech-stack">Vue.js • Express • PostgreSQL</p>
+        <p>Your third featured project. Focus on the impact and results, such as performance improvements or user benefits.</p>
+        <div class="project-links">
+          <a href="#" target="_blank">Live Demo</a>
+          <a href="#" target="_blank">Source Code</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2>Skills & Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Frontend</h3>
+        <ul>
+          <li>HTML5 & CSS3</li>
+          <li>JavaScript (ES6+)</li>
+          <li>React</li>
+          <li>Vue.js</li>
+          <li>Responsive Design</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Backend</h3>
+        <ul>
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>Python</li>
+          <li>RESTful APIs</li>
+          <li>Database Design</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Tools & Other</h3>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>VS Code</li>
+          <li>Chrome DevTools</li>
+          <li>Figma</li>
+          <li>Agile/Scrum</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Get In Touch</h2>
+    <p>I'm always open to new opportunities and interesting projects. Feel free to reach out!</p>
+    <div class="contact-links">
+      <a href="mailto:{{ site.email }}">Email</a>
+      {% if site.github_username %}
+      <a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a>
+      {% endif %}
+      {% if site.linkedin_username %}
+      <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank">LinkedIn</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
