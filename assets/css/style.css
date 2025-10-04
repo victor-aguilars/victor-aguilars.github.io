@@ -1,17 +1,49 @@
-/* CSS Variables */
+/* CSS Variables - Catppuccin Mocha */
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --text-color: #1f2937;
-    --text-light: #6b7280;
-    --background: #ffffff;
-    --background-light: #f9fafb;
-    --accent-color: #fbbf24;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Catppuccin Mocha Colors */
+    --ctp-rosewater: #f5e0dc;
+    --ctp-flamingo: #f2cdcd;
+    --ctp-pink: #f5c2e7;
+    --ctp-mauve: #cba6f7;
+    --ctp-red: #f38ba8;
+    --ctp-maroon: #eba0ac;
+    --ctp-peach: #fab387;
+    --ctp-yellow: #f9e2af;
+    --ctp-green: #a6e3a1;
+    --ctp-teal: #94e2d5;
+    --ctp-sky: #89dceb;
+    --ctp-sapphire: #74c7ec;
+    --ctp-blue: #89b4fa;
+    --ctp-lavender: #b4befe;
+    --ctp-text: #cdd6f4;
+    --ctp-subtext1: #bac2de;
+    --ctp-subtext0: #a6adc8;
+    --ctp-overlay2: #9399b2;
+    --ctp-overlay1: #7f849c;
+    --ctp-overlay0: #6c7086;
+    --ctp-surface2: #585b70;
+    --ctp-surface1: #45475a;
+    --ctp-surface0: #313244;
+    --ctp-base: #1e1e2e;
+    --ctp-mantle: #181825;
+    --ctp-crust: #11111b;
+
+    /* Theme Application */
+    --primary-color: #89b4fa;
+    --secondary-color: #74c7ec;
+    --text-color: #cdd6f4;
+    --text-light: #bac2de;
+    --background: #1e1e2e;
+    --background-light: #181825;
+    --background-dark: #11111b;
+    --accent-color: #f9e2af;
+    --surface: #313244;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
     --transition: all 0.3s ease;
     --border-radius: 8px;
     --max-width: 1200px;
+    --border-color: #45475a;
 }
 
 /* Reset and Base Styles */
@@ -62,13 +94,14 @@ body {
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--ctp-crust);
     border-color: var(--primary-color);
 }
 
 .btn-primary:hover {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
+    color: var(--ctp-crust);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -81,7 +114,7 @@ body {
 
 .btn-secondary:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--ctp-crust);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -92,7 +125,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(30, 30, 46, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow);
     z-index: 1000;
@@ -158,8 +191,8 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #89b4fa 0%, #cba6f7 100%);
+    color: var(--ctp-crust);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -192,7 +225,7 @@ body {
 
 .hero-cta {
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: var(--ctp-crust);
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     text-decoration: none;
@@ -204,7 +237,7 @@ body {
 .hero-cta:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-    background-color: #f59e0b;
+    background-color: var(--ctp-peach);
 }
 
 /* About Section */
@@ -239,12 +272,12 @@ body {
 }
 
 .project-card {
-    background-color: var(--background);
+    background-color: var(--surface);
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
 }
 
 .project-card:hover {
@@ -291,7 +324,7 @@ body {
 }
 
 .skill-category {
-    background-color: var(--background);
+    background-color: var(--surface);
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: var(--shadow);
@@ -322,7 +355,7 @@ body {
 }
 
 .skill-list li:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* Contact Section */
@@ -352,8 +385,8 @@ body {
 
 /* Footer */
 .footer {
-    background-color: var(--text-color);
-    color: white;
+    background-color: var(--background-dark);
+    color: var(--text-color);
     padding: 2rem 0;
     text-align: center;
 }
