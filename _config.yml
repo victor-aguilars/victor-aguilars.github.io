@@ -1,9 +1,9 @@
 # Site settings
 title: "Víctor Aguilar"
-email: "victor.aguilarsnz@gmail.com"
+email: "victor-aguilarsnz@gmail.com"
 description: "Senior Software Engineer | Building scalable distributed systems and cloud-native applications"
-url: "https://victor.aguilars.github.io"
-github_username: "victor.aguilars"
+url: "https://victor-aguilars.github.io"
+github_username: "victor-aguilars"
 linkedin_username: "víctor-alfredo-aguilar-sánchez"
 
 # Build settings
@@ -37,9 +37,9 @@ defaults:
 
 # Social media links
 social:
-  github: "https://github.com/victor.aguilars"
+  github: "https://github.com/victor-aguilars"
   linkedin: "https://linkedin.com/in/víctor-alfredo-aguilar-sánchez"
-  email: "mailto:victor.aguilarsnz@gmail.com"
+  email: "mailto:victor-aguilarsnz@gmail.com"
 
 # SEO settings
 author: "Victor Aguilar"
