@@ -1,10 +1,10 @@
 # Site settings
-title: "Victor Aguilar"
-email: "your.email@example.com"
-description: "Web Developer | Building responsive and user-friendly applications"
+title: "Víctor Aguilar"
+email: "victor.aguilarsnz@gmail.com"
+description: "Senior Software Engineer | Building scalable distributed systems and cloud-native applications"
 url: "https://victor.aguilars.github.io"
 github_username: "victor.aguilars"
-linkedin_username: "victor-aguilar"
+linkedin_username: "víctor-alfredo-aguilar-sánchez"
 
 # Build settings
 markdown: kramdown
@@ -38,8 +38,8 @@ defaults:
 # Social media links
 social:
   github: "https://github.com/victor.aguilars"
-  linkedin: "https://linkedin.com/in/victor-aguilar"
-  email: "mailto:your.email@example.com"
+  linkedin: "https://linkedin.com/in/víctor-alfredo-aguilar-sánchez"
+  email: "mailto:victor.aguilarsnz@gmail.com"
 
 # SEO settings
 author: "Victor Aguilar"
