@@ -1,264 +1,134 @@
-# Jekyll Portfolio Website
+# Víctor Alfredo Aguilar Sánchez - Portfolio
 
-A modern, responsive portfolio website built with Jekyll and designed for GitHub Pages hosting. This single-page portfolio showcases projects, skills, and provides contact information in a clean, professional design.
+A professional portfolio website built with Next.js, TypeScript, and Tailwind CSS, following Swiss Design principles.
 
-## 🌟 Features
+## Features
 
-- **Responsive Design**: Mobile-first approach with smooth transitions across all devices
-- **Modern UI**: Clean, professional design with smooth animations and hover effects
-- **Single Page Application**: Smooth scrolling navigation between sections
-- **Jekyll Powered**: Static site generation with GitHub Pages compatibility
-- **SEO Optimized**: Proper meta tags and semantic HTML structure
-- **Performance Focused**: Optimized CSS and JavaScript with minimal dependencies
-- **Accessibility**: Keyboard navigation support and semantic markup
+- **Swiss/International Design Style**: Clean, minimal, typography-focused design
+- **Fully Responsive**: Mobile-first approach with smooth animations
+- **Performance Optimized**: Static site generation for fast loading
+- **Accessible**: Built with semantic HTML and WCAG guidelines
+- **SEO Friendly**: Proper meta tags and structured content
 
-## 🛠️ Technologies Used
+## Tech Stack
 
-- **Jekyll**: Static site generator
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with CSS Grid and Flexbox
-- **JavaScript**: Vanilla JS for interactive functionality
-- **GitHub Pages**: Free hosting platform
-- **Git**: Version control
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Deployment**: GitHub Pages
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
 
-- Ruby (version 2.5 or higher)
-- Bundler gem
-- Git
+- Node.js 18+
+- npm
 
-### Local Development
+### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/[YOUR_USERNAME]/[YOUR_USERNAME].github.io.git
-   cd [YOUR_USERNAME].github.io
-   ```
-
-2. **Install dependencies**
-   ```bash
-   gem install bundler
-   bundle install
-   ```
-
-3. **Run the development server**
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-4. **View the site**
-   Open your browser and visit `http://localhost:4000`
-
-### Alternative method (if you have Jekyll installed globally)
 ```bash
-jekyll serve
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-## 📁 Project Structure
+The development server will start at [http://localhost:3000](http://localhost:3000).
+
+## Project Structure
 
 ```
-/
-├── _config.yml                 # Jekyll configuration
-├── index.html                  # Homepage content
-├── Gemfile                     # Ruby dependencies
-├── _layouts/
-│   └── default.html           # Main layout template
-├── assets/
-│   ├── css/
-│   │   └── style.css          # All styles
-│   └── js/
-│       └── main.js            # JavaScript functionality
-└── README.md                   # This file
+├── app/
+│   ├── layout.tsx          # Root layout with fonts and metadata
+│   ├── page.tsx            # Main page component
+│   └── globals.css         # Global styles and animations
+├── components/
+│   ├── Navigation.tsx      # Fixed navigation bar
+│   ├── Hero.tsx           # Hero section
+│   ├── WorkExperience.tsx # Work experience section
+│   ├── Skills.tsx         # Skills grid
+│   ├── Projects.tsx       # Featured projects
+│   ├── Contact.tsx        # Contact information
+│   └── Footer.tsx         # Footer
+├── public/
+│   └── .nojekyll          # GitHub Pages configuration
+└── .github/
+    └── workflows/
+        └── deploy.yml     # GitHub Actions deployment
 ```
 
-## 🎨 Customization Guide
+## Deployment
 
-### Personal Information
+This portfolio is automatically deployed to GitHub Pages when you push to the main branch.
 
-1. **Update _config.yml**
-   ```yaml
-   title: "Your Name"
-   email: "your.email@example.com"
-   description: "Your tagline here"
-   github_username: "your-github-username"
-   linkedin_username: "your-linkedin-username"
-   ```
+### First-time Setup
 
-2. **Update social links in _config.yml**
-   ```yaml
-   social:
-     github: "https://github.com/your-username"
-     linkedin: "https://linkedin.com/in/your-profile"
-     email: "mailto:your.email@example.com"
-   ```
+1. Go to your repository settings
+2. Navigate to Pages section
+3. Set Source to "GitHub Actions"
+4. Push to main branch to trigger deployment
 
-### Content Customization
+### Manual Deployment
 
-1. **Hero Section**: Edit the hero section in `index.html`
-2. **About Section**: Update the about paragraphs with your information
-3. **Projects**: Replace the placeholder projects with your actual projects
-4. **Skills**: Modify the skills lists to match your expertise
-5. **Contact**: Ensure contact links point to your profiles
+```bash
+# Build the static site
+npm run build
 
-### Design Customization
+# The output will be in the 'out' directory
+```
 
-**Colors**: Modify CSS variables in `assets/css/style.css`
-```css
-:root {
-    --primary-color: #2563eb;      /* Main brand color */
-    --secondary-color: #1e40af;    /* Darker brand color */
-    --accent-color: #fbbf24;       /* Highlight color */
-    /* ... other variables */
+## Customization
+
+### Colors
+
+Edit `tailwind.config.ts` to change the color scheme:
+
+```typescript
+colors: {
+  primary: '#0066FF',    // Accent color
+  secondary: '#F5F5F5',  // Background color
+  text: '#1A1A1A',       // Text color
 }
 ```
 
-**Layout**: Adjust grid layouts, spacing, and section arrangements in the CSS file.
+### Content
 
-**Typography**: Change fonts by updating the Google Fonts import and CSS font-family declarations.
+Update the content in each component:
+- **Personal Info**: `components/Hero.tsx`
+- **Work Experience**: `components/WorkExperience.tsx`
+- **Skills**: `components/Skills.tsx`
+- **Projects**: `components/Projects.tsx`
+- **Contact**: `components/Contact.tsx`
 
-## 🚀 Deployment to GitHub Pages
+## Design Principles
 
-### Method 1: Direct Push (Recommended)
+This portfolio follows Swiss Design (International Typographic Style) principles:
 
-1. **Create a new repository** named `[your-username].github.io`
+1. **Form Follows Function**: Every element serves a purpose
+2. **Grid-Based Layout**: Organized on a modular grid system
+3. **Typography-Focused**: Inter font as the primary design element
+4. **Minimal Color Palette**: Monochrome with one accent color
+5. **Generous Whitespace**: Active use of negative space
+6. **Clean and Direct**: No unnecessary decorative elements
 
-2. **Push your code**
-   ```bash
-   git remote add origin https://github.com/[your-username]/[your-username].github.io.git
-   git add .
-   git commit -m "Initial portfolio commit"
-   git push -u origin main
-   ```
+## Performance
 
-3. **Enable GitHub Pages**
-   - Go to repository Settings
-   - Scroll to "Pages" section
-   - Source: Deploy from a branch
-   - Branch: main
-   - Folder: / (root)
+- Lighthouse score target: 95+ on all metrics
+- First Contentful Paint: <1.5s
+- Time to Interactive: <3.5s
+- Optimized for static deployment
 
-4. **Access your site**
-   Your site will be available at `https://[your-username].github.io`
+## License
 
-### Method 2: Fork and Customize
+© 2025 Víctor Alfredo Aguilar Sánchez. All rights reserved.
 
-1. Fork this repository
-2. Rename it to `[your-username].github.io`
-3. Customize the content
-4. GitHub Pages will automatically deploy your changes
+## Contact
 
-## 📱 Sections Overview
-
-### Navigation
-- Sticky navigation with smooth scrolling
-- Active state based on current section
-- Responsive design
-
-### Hero Section
-- Eye-catching gradient background
-- Name highlight with accent color
-- Call-to-action button
-
-### About Section
-- Professional introduction
-- Personal background
-- Career highlights
-
-### Projects Section
-- Featured project showcase
-- Technology stack display
-- Live demo and source code links
-
-### Skills Section
-- Categorized skill sets
-- Frontend, backend, and tools
-- Visual card layout
-
-### Contact Section
-- Multiple contact methods
-- Social media links
-- Professional networking
-
-## 🎯 Best Practices Implemented
-
-- **Performance**: Optimized CSS and JavaScript
-- **SEO**: Semantic HTML and meta tags
-- **Accessibility**: Keyboard navigation and ARIA labels
-- **Security**: External links with `rel="noopener noreferrer"`
-- **Responsive**: Mobile-first design approach
-- **Modern**: ES6+ JavaScript and CSS Grid/Flexbox
-
-## 🔧 Advanced Customization
-
-### Adding New Sections
-
-1. Add a new section in `index.html`
-2. Include appropriate CSS in `style.css`
-3. Update navigation in `_layouts/default.html`
-4. Add smooth scrolling support in `main.js`
-
-### Adding a Blog
-
-1. Create `_posts` directory
-2. Add blog layout in `_layouts/blog.html`
-3. Create individual post files
-4. Update navigation and styling
-
-### Contact Form Integration
-
-To add a working contact form:
-
-1. Use services like Formspree, Netlify Forms, or Formspark
-2. Update the contact section with a form
-3. Add form validation JavaScript
-4. Style the form elements
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Site not loading**: Check GitHub Pages settings and repository name
-2. **Styles not applying**: Verify CSS file paths and Jekyll build process
-3. **JavaScript errors**: Check browser console for specific error messages
-4. **Jekyll build failures**: Check `_config.yml` syntax and dependencies
-
-### Local Development Issues
-
-1. **Ruby version**: Ensure Ruby 2.5+ is installed
-2. **Bundler errors**: Run `gem update bundler`
-3. **Permission errors**: Use `sudo` if needed for gem installation
-4. **Port conflicts**: Use `jekyll serve --port 4001` for alternative port
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-If you have questions or need help customizing your portfolio:
-
-1. Check the [Jekyll documentation](https://jekyllrb.com/docs/)
-2. Review [GitHub Pages documentation](https://docs.github.com/en/pages)
-3. Open an issue in this repository
-4. Contact the maintainer
-
-## 🎉 Acknowledgments
-
-- Built with [Jekyll](https://jekyllrb.com/)
-- Hosted on [GitHub Pages](https://pages.github.com/)
-- Fonts from [Google Fonts](https://fonts.google.com/)
-- Icons inspiration from modern web design trends
-
----
-
-**Happy coding!** 🚀 Make this portfolio your own and showcase your amazing work to the world.
+- **Email**: victor.aguilarsnz@gmail.com
+- **Location**: Monterrey, N.L. México
+- **Phone**: +52 811 906 8078

@@ -1,252 +1,360 @@
-# Jekyll Portfolio Website - Project Instructions
+# Senior Software Engineer Portfolio - Project Specification
 
 ## Project Overview
-This is a professional web development portfolio website built with Jekyll and designed to be hosted on GitHub Pages. The portfolio showcases projects, skills, and provides contact information in a clean, modern, single-page design.
+Build a professional portfolio website for Víctor Alfredo Aguilar Sánchez, a Senior Software Engineer with 8+ years of experience in distributed systems, cloud-native applications, and high-throughput services.
 
-## Personal Information
-- **Name**: [YOUR NAME]
-- **Email**: [YOUR EMAIL]
-- **GitHub**: [YOUR GITHUB USERNAME]
-- **LinkedIn**: [YOUR LINKEDIN USERNAME]
-- **Site URL**: https://[YOUR GITHUB USERNAME].github.io
-- **Tagline**: Web Developer | Building responsive and user-friendly applications
+## Design Philosophy: Swiss/International Style
 
-## Technical Stack
-- **Static Site Generator**: Jekyll
-- **Hosting**: GitHub Pages
-- **Templating**: Liquid
-- **Styling**: Pure CSS (no frameworks)
-- **JavaScript**: Vanilla JS (no libraries)
-- **Version Control**: Git
+### Core Design Principles
+The portfolio follows Swiss Design (International Typographic Style) principles:
 
-## Project Structure
+1. **Form Follows Function**: Every design element serves a purpose
+2. **Grid-Based Layout**: All content organized on a modular grid system
+3. **Typography-Focused**: Clean sans-serif fonts as primary design element
+4. **Minimal Color Palette**: Primarily monochrome with one accent color
+5. **Generous Whitespace**: Active use of negative space for clarity
+6. **Asymmetric Balance**: Dynamic layouts while maintaining visual order
+7. **Content Is Interface**: Remove all unnecessary decorative elements
+
+### Visual Characteristics
+- **No serif fonts allowed** - use Inter, Helvetica, or similar clean sans-serifs
+- **Flush left, ragged right** text alignment
+- **Bold, large headers** with clear hierarchy
+- **High-quality photography** over illustrations
+- **Geometric shapes** used sparingly
+- **Responsive grid system** that adapts across devices
+
+### Reference Examples
+- BIG (Bjarke Ingels Group) website: https://big.dk/
+- Apple's product pages
+- Medium's blog platform
+- Linear's marketing site
+
+## Tech Stack
+
+### Core Technologies
+- **Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Deployment**: GitHub Pages (static export)
+
+### Additional Tools
+- **Fonts**: Inter (from Google Fonts or next/font)
+- **Icons**: Lucide React (minimal, clean icons)
+- **Animation**: Framer Motion (subtle, purposeful animations only)
+
+## Portfolio Structure
+
+### Pages/Sections
+
+#### 1. Home/About
+- Hero section with name and title
+- Brief professional summary (2-3 sentences)
+- Current role and location
+- Primary CTA (Contact or View Work)
+
+**Content:**
 ```
-/
-├── _config.yml                 # Jekyll configuration
-├── index.html                  # Homepage (single-page portfolio)
-├── Gemfile                     # Ruby dependencies
-├── _layouts/
-│   └── default.html           # Main layout template
-├── assets/
-│   ├── css/
-│   │   └── style.css          # All styles
-│   └── js/
-│       └── main.js            # All JavaScript
-└── README.md                   # Project documentation
+Víctor Alfredo Aguilar Sánchez
+Senior Software Engineer
+
+8+ years designing and scaling distributed systems, cloud-native applications, 
+and high-throughput services. Strong experience with API design, performance 
+optimization, and microservice architecture.
+
+Currently: Senior Software Engineer at Apptegy (Remote, Monterrey, N.L. México)
 ```
 
-## Design Requirements
+#### 2. Work Experience
+Display in reverse chronological order:
 
-### Color Scheme
-- **Primary Color**: #2563eb (Blue)
-- **Secondary Color**: #1e40af (Darker Blue)
-- **Text Color**: #1f2937 (Dark Gray)
-- **Text Light**: #6b7280 (Medium Gray)
-- **Background**: #ffffff (White)
-- **Background Light**: #f9fafb (Light Gray)
-- **Accent/Highlight**: #fbbf24 (Gold/Yellow for hero section)
+**Apptegy** (Sept 2022 - Present)
+- Architected microservice-based data platform (Ruby on Rails + VueJS)
+- Optimized PostgreSQL + DuckDB (50x performance boost, 50% cost reduction)
+- Built async data pipelines with Sidekiq + Redis (terabytes daily)
 
-Use CSS custom properties (variables) in `:root` for easy customization.
+**Bengala** (Aug 2019 - Aug 2022)
+- Led backend engineering team
+- Architected geolocation platforms (10,000+ real-time users)
+- Low-latency tracking, optimized routing, seamless payments
 
-### Layout & Sections
+**Telos Labs** (Jan 2019 - July 2019)
+- Built Rails + VueJS applications
+- Focus on performance and usability
 
-#### Navigation Bar
-- Sticky navigation at the top
-- Logo/name on the left
-- Links on the right: About, Projects, Skills, Contact
-- Smooth scrolling to sections
-- Active state based on current section in view
-- Box shadow for depth
-- Responsive (hamburger menu not required for MVP)
+**Softtek** (Aug 2017 - Dec 2018)
+- Developed React Native + Unity3D AR/VR apps
+- HoloLens enterprise training solutions
 
-#### Hero Section
-- Full-width section with gradient background (purple/blue gradient)
-- Large heading with name (highlight name in gold color)
-- Tagline/description
-- Call-to-action button "View My Work" linking to #projects
-- Centered content
-- White text
+#### 3. Skills/Tech Stack
+Organized in clear categories with visual grid:
 
-#### About Section
-- Light gray background (#f9fafb)
-- Centered heading "About Me"
-- 2-3 paragraphs of placeholder text about being a web developer
-- Max-width container for readability
-- Centered text
+**Backend & Distributed Systems**
+Ruby, Python, Java, Rails, SQL/NoSQL, REST, GraphQL, Elasticsearch, Kafka, RabbitMQ
 
-#### Projects Section
-- White background
-- Heading "Featured Projects"
-- Grid layout: 3 columns on desktop, 1 column on mobile
-- 3 project cards with:
-  - Project title
-  - Tech stack (small text, different color)
-  - Description (2-3 sentences)
-  - Links: "Live Demo" and "Source Code"
-- Card hover effects (lift up, increase shadow)
-- Cards should have subtle box shadow
+**Frontend & Mobile**
+Vue.js, React, React Native, ExpoJS, NextJs, EmberJS, Typescript, Tailwind
 
-#### Skills Section
-- Light gray background (#f9fafb)
-- Heading "Skills & Technologies"
-- Grid layout: 3 columns on desktop, 1 on mobile
-- 3 skill categories:
-  - **Frontend**: HTML5 & CSS3, JavaScript (ES6+), React, Vue.js, Responsive Design
-  - **Backend**: Node.js, Express, Python, RESTful APIs, Database Design
-  - **Tools & Other**: Git & GitHub, VS Code, Chrome DevTools, Figma, Agile/Scrum
-- Each category in a card with box shadow
+**Cloud & Infrastructure**
+AWS (EC2, S3, Lambda, CloudFront), Docker, Kubernetes, CI/CD, Prometheus, Grafana
 
-#### Contact Section
-- White background
-- Heading "Get In Touch"
-- Brief message about being open to opportunities
-- Centered buttons/links for: Email, GitHub, LinkedIn
-- Links should be styled as buttons
+**Soft Skills**
+Leadership, System Design, Mentorship, Collaboration
 
-#### Footer
-- Dark background (#1f2937)
-- White text
-- Copyright notice and "Built with Jekyll & GitHub Pages"
-- Centered content
+#### 4. Projects (Optional but Recommended)
+Showcase 2-3 key projects with:
+- Project name
+- Tech stack used
+- Brief description
+- Key achievement/metric
+- Link (if available) or "Private/Enterprise"
 
-### Responsive Design
-- Mobile-first approach
-- Breakpoint at 768px for tablet/desktop
-- Navigation links should stack or reduce gap on mobile
-- Grid layouts should become single column on mobile
-- Font sizes should scale down appropriately
-- Hero heading should be smaller on mobile
+Suggested projects to highlight:
+- Data platform at Apptegy (microservices, scalability)
+- Geolocation platform at Bengala (real-time systems)
+- AR/VR training solution at Softtek (innovation)
 
-### Animations & Interactions
-- Smooth scrolling for all anchor links
-- Navigation links change color on hover
-- Project cards lift and increase shadow on hover
-- Fade-in animation for project cards and skill categories when scrolling into view (use Intersection Observer)
-- Smooth transitions on all interactive elements
-- Active navigation state based on scroll position
+#### 5. Contact
+- Email: victor.aguilarsnz@gmail.com
+- LinkedIn: [Link]
+- GitHub: [Link]
+- Location: Monterrey, N.L. México
+- Phone: (+52) 8119068078
 
-## Code Standards
+## Design System
 
-### HTML
-- Use semantic HTML5 elements
-- Include proper meta tags (charset, viewport, description)
-- Use Jekyll Liquid templating for dynamic content (site.title, site.email, etc.)
-- Keep structure clean and well-indented
-- Add comments for major sections
+### Typography Scale
+```
+- Hero/H1: 4rem (64px) - Bold
+- H2: 2.5rem (40px) - Bold
+- H3: 1.5rem (24px) - SemiBold
+- Body: 1rem (16px) - Regular
+- Small: 0.875rem (14px) - Regular
+```
 
-### CSS
-- Use CSS custom properties for colors and repeated values
-- Mobile-first media queries
-- BEM or semantic class naming
-- Group related styles together
-- Add comments for major sections
-- No CSS frameworks (pure CSS only)
-- Use flexbox and grid for layouts
+### Color Palette
+**Option 1: Tech Blue**
+- Primary: #0066FF (Blue)
+- Background: #FFFFFF (White)
+- Text: #1A1A1A (Near Black)
+- Secondary: #F5F5F5 (Light Gray)
 
-### JavaScript
-- Use modern ES6+ syntax
-- Add comments explaining functionality
-- No external libraries (vanilla JS only)
-- Handle edge cases (check if elements exist before manipulating)
-- Use event delegation where appropriate
+**Option 2: Emerald Accent**
+- Primary: #10B981 (Emerald)
+- Background: #FFFFFF
+- Text: #1A1A1A
+- Secondary: #F5F5F5
 
-### Jekyll/Liquid
-- Use site variables from _config.yml
-- Use proper Liquid syntax with {% %} and {{ }}
-- Keep logic minimal in templates
-- Use layouts for DRY code
+**Option 3: Monochrome**
+- Primary: #1A1A1A (Black)
+- Background: #FFFFFF
+- Text: #1A1A1A
+- Accent: #6B7280 (Gray)
 
-## File-Specific Requirements
+### Spacing System
+Use Tailwind's spacing scale (4px base unit):
+- xs: 0.5rem (8px)
+- sm: 1rem (16px)
+- md: 1.5rem (24px)
+- lg: 2rem (32px)
+- xl: 3rem (48px)
+- 2xl: 4rem (64px)
+- 3xl: 6rem (96px)
 
-### _config.yml
-- Set all personal information
-- Configure for GitHub Pages compatibility
-- Set markdown processor to kramdown
-- Exclude unnecessary files from build
-- Include social media links
+### Grid System
+- Max content width: 1280px
+- Gutter: 24px
+- Columns: 12-column grid
+- Breakpoints: Follow Tailwind defaults (sm, md, lg, xl, 2xl)
 
-### index.html
-- Front matter with layout: default
-- Use Liquid to pull in config variables
-- All sections in semantic HTML5
-- Use section elements with IDs for navigation
+## Layout Patterns
 
-### _layouts/default.html
-- Complete HTML5 document structure
-- Include navigation and footer
-- Link to CSS and JS files using Liquid relative_url
-- {{ content }} placeholder for page content
-- Proper meta tags for SEO
+### Homepage Layout
+```
+┌─────────────────────────────────────┐
+│  Navigation (fixed/sticky)          │
+├─────────────────────────────────────┤
+│                                     │
+│  Hero Section                       │
+│  - Name (large, bold)               │
+│  - Title                            │
+│  - Brief intro (2-3 lines)          │
+│  - CTA button                       │
+│                                     │
+├─────────────────────────────────────┤
+│  Work Experience                    │
+│  - Grid/List of positions           │
+│  - Company, dates, key achievements │
+│                                     │
+├─────────────────────────────────────┤
+│  Skills                             │
+│  - Grid layout                      │
+│  - Categorized by type              │
+│                                     │
+├─────────────────────────────────────┤
+│  Contact                            │
+│  - Links (email, LinkedIn, GitHub)  │
+│  - Location                         │
+│                                     │
+└─────────────────────────────────────┘
+```
 
-### assets/css/style.css
-- Complete styling for entire site
-- Organized by component/section
-- Responsive styles in media queries at bottom
-- Use CSS Grid and Flexbox
-- Modern, clean aesthetic
+## Component Specifications
 
-### assets/js/main.js
-- Smooth scrolling implementation
-- Active navigation state logic
-- Intersection Observer for scroll animations
-- All functionality well-commented
+### Navigation
+- Minimal, fixed at top or sticky
+- Logo/Name on left
+- Navigation links on right (Home, Experience, Skills, Contact)
+- Mobile: Hamburger menu (clean, minimal animation)
 
-### README.md
-- Project description
-- Technologies used
-- Setup instructions (how to run locally)
-- Deployment instructions (GitHub Pages)
-- Customization guide
-- License information
+### Cards/Sections
+- Clean borders or subtle shadows
+- Consistent padding (p-6 or p-8)
+- Hover states: subtle scale or border color change
+- No rounded corners (or minimal: rounded-sm)
 
-## Development Workflow
+### Buttons
+- Primary: Solid background with accent color
+- Secondary: Outline style
+- Consistent padding: px-6 py-3
+- Hover: Slight background color shift
+- No excessive border radius
 
-### Local Development
-1. Install Ruby and Jekyll
-2. Run `bundle install`
-3. Run `jekyll serve` or `bundle exec jekyll serve`
-4. View at `http://localhost:4000`
+### Typography Components
+- Section headers: Large, bold, generous top margin
+- Body text: Comfortable line height (1.6-1.7)
+- Lists: Clean, left-aligned, consistent spacing
+- Code snippets: Monospace font, subtle background
 
-### Deployment to GitHub Pages
-1. Create repository named `[username].github.io`
-2. Push all files to main branch
-3. Enable GitHub Pages in repository settings
-4. Site will be live at `https://[username].github.io`
+## Animation Guidelines
 
-## Customization Guidelines
-- Colors: Modify CSS custom properties in `:root`
-- Content: Update index.html and _config.yml
-- Projects: Replace placeholder projects with real ones
-- Skills: Edit skills section to match actual skills
-- Sections: Can add/remove sections as needed
-- Layout: Can adjust grid columns, spacing, etc.
+### Principles
+- **Subtle and purposeful** - no gratuitous animation
+- **Fast transitions** - 150-300ms duration
+- **Functional** - animations should aid understanding, not distract
 
-## Best Practices
-- Keep code clean and well-organized
-- Use meaningful class names
-- Comment complex logic
-- Test on multiple devices/browsers
-- Optimize images before adding
-- Keep file sizes small for fast loading
-- Use semantic HTML for accessibility
-- Ensure proper color contrast for readability
+### Allowed Animations
+- Fade in on scroll (stagger for lists)
+- Hover states (scale, color shift)
+- Smooth page transitions
+- Reveal effects for sections
 
-## Future Enhancements (Optional)
-- Add a blog section
-- Include project screenshots/images
-- Add testimonials section
-- Implement dark mode toggle
-- Add animations library (AOS, GSAP)
-- Include contact form (using Formspree or similar)
-- Add Google Analytics
-- Create custom 404 page
-- Add favicon and social media preview images
+### Prohibited
+- Parallax effects (too decorative)
+- Excessive bounce or elastic easing
+- Auto-playing animations
+- Flashy transitions
 
-## Notes for Claude Code
-- Create production-ready code, not placeholders
-- Follow all design specifications exactly
-- Use modern web development best practices
-- Ensure all code is well-commented
-- Test that all links and functionality work
-- Make the code easy to understand and modify
-- Prioritize clean, maintainable code over clever solutions
+## Content Guidelines
+
+### Writing Style
+- **Concise and direct** - avoid fluff
+- **Active voice** - "Built X" not "X was built"
+- **Metrics-focused** - include numbers (50x performance, 10,000+ users)
+- **Technical but accessible** - explain what you built and why it matters
+
+### What to Emphasize
+- Distributed systems expertise
+- Performance optimization (50x improvements)
+- Scale (millions of requests, terabytes of data)
+- Leadership and mentorship
+- Cross-functional collaboration
+
+## Technical Implementation Notes
+
+### Next.js Configuration
+```javascript
+// next.config.js
+module.exports = {
+  output: 'export', // For static GitHub Pages deployment
+  images: {
+    unoptimized: true, // Required for static export
+  },
+  trailingSlash: true, // Better for static hosting
+}
+```
+
+### Tailwind Configuration
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        primary: '#0066FF', // or chosen accent color
+      },
+    },
+  },
+}
+```
+
+### Folder Structure
+```
+/app
+  /page.tsx (Home)
+  /layout.tsx (Root layout)
+  /globals.css
+/components
+  /Navigation.tsx
+  /Hero.tsx
+  /WorkExperience.tsx
+  /Skills.tsx
+  /Contact.tsx
+  /Footer.tsx
+/public
+  /resume.pdf
+  /images (if needed)
+```
+
+## Deployment
+
+### GitHub Pages Setup
+1. Repository name: `username.github.io` or use custom domain
+2. Build command: `npm run build`
+3. Output directory: `out/`
+4. Deploy via GitHub Actions or manual upload
+
+### Performance Targets
+- Lighthouse score: 95+ on all metrics
+- First Contentful Paint: <1.5s
+- Time to Interactive: <3.5s
+- Total bundle size: <200KB (JS)
+
+## Success Criteria
+
+The portfolio is successful if it:
+1. ✅ Loads quickly (<2s on 3G)
+2. ✅ Clearly communicates technical expertise
+3. ✅ Is fully responsive (mobile-first)
+4. ✅ Follows Swiss design principles rigorously
+5. ✅ Works with JavaScript disabled (progressive enhancement)
+6. ✅ Has clear CTAs for contact
+7. ✅ Showcases real achievements with metrics
+8. ✅ Is accessible (WCAG AA minimum)
+
+## Next Steps
+
+1. Set up Next.js project with TypeScript and Tailwind
+2. Implement base layout and navigation
+3. Build Hero section with your information
+4. Create Work Experience section with grid layout
+5. Add Skills section with categorized tech stack
+6. Implement Contact section
+7. Add subtle animations and interactions
+8. Test responsive behavior
+9. Optimize for performance
+10. Deploy to GitHub Pages
+
+## Additional Resources
+
+- Swiss Design: https://www.smashingmagazine.com/2009/07/lessons-from-swiss-style-graphic-design/
+- Grid Systems: CSS Grid and Tailwind's grid utilities
+- Typography: https://tailwindcss.com/docs/font-size
+- Next.js Static Export: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
+
+---
+
+**Remember**: The goal is a clean, professional, fast-loading portfolio that lets your work speak for itself. Every design decision should serve the purpose of clearly communicating your expertise and making it easy for potential employers or collaborators to reach you.
