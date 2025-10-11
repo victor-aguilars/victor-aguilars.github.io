@@ -119,7 +119,6 @@ Suggested projects to highlight:
 - LinkedIn: [Link]
 - GitHub: [Link]
 - Location: Monterrey, N.L. México
-- Phone: (+52) 8119068078
 
 ## Design System
 

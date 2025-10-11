@@ -9,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Víctor Alfredo Aguilar Sánchez | Senior Software Engineer",
+  title: "VAAS | Senior Software Engineer",
   description: "8+ years designing and scaling distributed systems, cloud-native applications, and high-throughput services. Strong experience with API design, performance optimization, and microservice architecture.",
   keywords: ["Software Engineer", "Distributed Systems", "Cloud Native", "Ruby on Rails", "Vue.js", "React", "Backend Engineering"],
-  authors: [{ name: "Víctor Alfredo Aguilar Sánchez" }],
+  authors: [{ name: "VAAS" }],
   openGraph: {
-    title: "Víctor Alfredo Aguilar Sánchez | Senior Software Engineer",
+    title: "VAAS | Senior Software Engineer",
     description: "8+ years designing and scaling distributed systems, cloud-native applications, and high-throughput services.",
     type: "website",
   },

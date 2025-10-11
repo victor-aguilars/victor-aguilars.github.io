@@ -131,4 +131,3 @@ This portfolio follows Swiss Design (International Typographic Style) principles
 
 - **Email**: victor.aguilarsnz@gmail.com
 - **Location**: Monterrey, N.L. México
-- **Phone**: +52 811 906 8078
