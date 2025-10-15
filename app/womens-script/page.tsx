@@ -73,7 +73,7 @@ export default function WomensScriptTranslator() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-neutral-900">
-                Alethi Women's Script Translator
+                Alethi Women&apos;s Script Translator
               </h1>
               <p className="text-neutral-600 mt-2">
                 Convert English text to the phonetic writing system from The Stormlight Archive
@@ -226,7 +226,7 @@ export default function WomensScriptTranslator() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-neutral-900 mb-2">
-                Women's Script
+                Women&apos;s Script
               </label>
               <div className="border border-neutral-300 bg-white p-6 min-h-48 max-h-[600px] overflow-auto">
                 {isLoading ? (
@@ -282,7 +282,7 @@ export default function WomensScriptTranslator() {
             <div>
               <h3 className="font-semibold text-neutral-900 mb-2">Phonetic Writing System</h3>
               <p>
-                The Women's Script is a phonetic writing system from Brandon Sanderson's Stormlight Archive series.
+                The Women&apos;s Script is a phonetic writing system from Brandon Sanderson&apos;s Stormlight Archive series.
                 It maps to sounds rather than letters, with characters differentiated by shape and height.
               </p>
             </div>
