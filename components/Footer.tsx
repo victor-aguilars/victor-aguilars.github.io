@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-content mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm">
-            © {currentYear} VAAS. All rights reserved.
+            © {currentYear} Víctor Aguilar. All rights reserved.
           </p>
 
           <p className="text-sm text-white/70">

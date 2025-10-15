@@ -9,13 +9,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VAAS | Senior Software Engineer",
-  description: "8+ years designing and scaling distributed systems, cloud-native applications, and high-throughput services. Strong experience with API design, performance optimization, and microservice architecture.",
-  keywords: ["Software Engineer", "Distributed Systems", "Cloud Native", "Ruby on Rails", "Vue.js", "React", "Backend Engineering"],
+  title: "VAAS | Projects",
+  description: "Next.js projects by Víctor Aguilar. Portfolio, experiments, and web applications.",
+  keywords: ["Software Engineer", "Distributed Systems", "Cloud Native", "Ruby on Rails", "Vue.js", "React", "Backend Engineering", "Next.js"],
   authors: [{ name: "VAAS" }],
   openGraph: {
-    title: "VAAS | Senior Software Engineer",
-    description: "8+ years designing and scaling distributed systems, cloud-native applications, and high-throughput services.",
+    title: "VAAS | Projects",
+    description: "Next.js projects by Víctor Aguilar. Portfolio, experiments, and web applications.",
     type: "website",
   },
 };

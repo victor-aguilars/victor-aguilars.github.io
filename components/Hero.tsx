@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="max-w-content w-full mx-auto">
         <div className="max-w-4xl">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text mb-4 leading-tight">
-            Víctor Alfredo Aguilar Sánchez
+            Víctor Aguilar
           </h1>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-8">
