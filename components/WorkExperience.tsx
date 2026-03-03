@@ -5,20 +5,22 @@ const experiences = [
     period: 'Sept 2022 - Present',
     role: 'Senior Software Engineer',
     achievements: [
-      'Architected microservice-based data platform (Ruby on Rails + VueJS)',
-      'Optimized PostgreSQL + DuckDB (50x performance boost, 50% cost reduction)',
-      'Built async data pipelines with Sidekiq + Redis (terabytes daily)',
+      'Developed multi-tenant AI orchestration platform leveraging FastAPI for custom agents, Langfuse for prompt versioning/observability, and Next.js for frontend',
+      'Engineered high-performance analytics microservice using Cube.dev; reduced query latency from 30 seconds to microseconds',
+      'Architected microservice-based data platform (Ruby on Rails + VueJS) for horizontal scalability and millions of daily requests',
+      'Optimized PostgreSQL queries and offloaded workloads to DuckDB (50x performance boost, 50% cost reduction)',
+      'Built async data pipelines with Sidekiq + Redis, enabling ingestion of terabytes of data daily',
+      'Boosted engineering velocity by developing internal custom agents and specialized skills for Cursor and Claude Code',
     ],
   },
   {
     company: 'Bengala',
     location: 'Monterrey, N.L. México',
     period: 'Aug 2019 - Aug 2022',
-    role: 'Backend Engineering Lead',
+    role: 'Software Engineer',
     achievements: [
-      'Led backend engineering team',
-      'Architected geolocation platforms (10,000+ real-time users)',
-      'Low-latency tracking, optimized routing, seamless payments',
+      'Led backend engineering team to plan, design, and deliver large-scale solutions for clients across fintech, mobility, and logistics',
+      'Architected geolocation platforms supporting 10,000+ real-time users with low-latency tracking, optimized routing, and seamless payments',
     ],
   },
   {
@@ -27,18 +29,16 @@ const experiences = [
     period: 'Jan 2019 - July 2019',
     role: 'Software Engineer',
     achievements: [
-      'Built Rails + VueJS applications',
-      'Focus on performance and usability',
+      'Built client-facing Rails + VueJS applications with emphasis on performance and usability',
     ],
   },
   {
     company: 'Softtek',
     location: 'Monterrey, N.L. México',
     period: 'Aug 2017 - Dec 2018',
-    role: 'Software Engineer',
+    role: 'Software Developer',
     achievements: [
-      'Developed React Native + Unity3D AR/VR apps',
-      'HoloLens enterprise training solutions',
+      'Developed React Native + Unity3D AR/VR apps, including enterprise HoloLens training solutions with advanced spatial mapping',
     ],
   },
 ];

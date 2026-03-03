@@ -3,6 +3,10 @@
 ## Project Overview
 Build a professional portfolio website for Víctor Aguilar, a Senior Software Engineer with 8+ years of experience in distributed systems, cloud-native applications, and high-throughput services.
 
+**Primary Purpose:** Showcase personal projects and technical work through detailed project pages with live demos, technical write-ups, and links to repositories. The portfolio itself demonstrates full-stack development skills while serving as a platform to highlight other interesting projects.
+
+**Key Differentiator:** Unlike typical portfolios that just list work experience, this portfolio features interactive project showcases where visitors can actually use the applications (like the Alethi Women's Script translator) directly within the portfolio.
+
 ## Design Philosophy: Swiss/International Style
 
 ### Core Design Principles
@@ -58,9 +62,10 @@ The portfolio follows Swiss Design (International Typographic Style) principles:
 Víctor Aguilar
 Senior Software Engineer
 
-8+ years designing and scaling distributed systems, cloud-native applications, 
-and high-throughput services. Strong experience with API design, performance 
-optimization, and microservice architecture.
+9+ years designing and scaling distributed systems, cloud-native applications,
+and high-throughput services. Strong experience with API design, performance
+optimization, and microservice architecture. Proven ability to drive cross-team
+initiatives, mentor engineers, and deliver systems that support millions of users.
 
 Currently: Senior Software Engineer at Apptegy (Remote, Monterrey, N.L. México)
 ```
@@ -69,50 +74,75 @@ Currently: Senior Software Engineer at Apptegy (Remote, Monterrey, N.L. México)
 Display in reverse chronological order:
 
 **Apptegy** (Sept 2022 - Present)
-- Architected microservice-based data platform (Ruby on Rails + VueJS)
-- Optimized PostgreSQL + DuckDB (50x performance boost, 50% cost reduction)
-- Built async data pipelines with Sidekiq + Redis (terabytes daily)
+- Developed multi-tenant AI orchestration platform leveraging FastAPI for custom agents, Langfuse for prompt versioning/observability, and Next.js for frontend
+- Engineered high-performance analytics microservice using Cube.dev; reduced query latency from 30 seconds to microseconds
+- Architected microservice-based data platform (Ruby on Rails + VueJS) for horizontal scalability and millions of daily requests
+- Optimized PostgreSQL queries and offloaded workloads to DuckDB (50x performance boost, 50% cost reduction)
+- Built async data pipelines with Sidekiq + Redis, enabling ingestion of terabytes of data daily
+- Boosted engineering velocity by developing internal custom agents and specialized skills for Cursor and Claude Code
 
 **Bengala** (Aug 2019 - Aug 2022)
-- Led backend engineering team
-- Architected geolocation platforms (10,000+ real-time users)
-- Low-latency tracking, optimized routing, seamless payments
+- Led backend engineering team to plan, design, and deliver large-scale solutions for clients across fintech, mobility, and logistics
+- Architected geolocation platforms supporting 10,000+ real-time users with low-latency tracking, optimized routing, and seamless payments
 
 **Telos Labs** (Jan 2019 - July 2019)
-- Built Rails + VueJS applications
-- Focus on performance and usability
+- Built client-facing Rails + VueJS applications with emphasis on performance and usability
 
 **Softtek** (Aug 2017 - Dec 2018)
-- Developed React Native + Unity3D AR/VR apps
-- HoloLens enterprise training solutions
+- Developed React Native + Unity3D AR/VR apps, including enterprise HoloLens training solutions with advanced spatial mapping
 
 #### 3. Skills/Tech Stack
 Organized in clear categories with visual grid:
 
 **Backend & Distributed Systems**
-Ruby, Python, Java, Rails, SQL/NoSQL, REST, GraphQL, Elasticsearch, Kafka, RabbitMQ
+Ruby, Python, Java, Rails, SQL/NoSQL, REST, GraphQL, Elasticsearch, Kafka, RabbitMQ, Supabase
 
 **Frontend & Mobile**
 Vue.js, React, React Native, ExpoJS, NextJs, EmberJS, Typescript, Tailwind
 
+**AI & Development Tools**
+Cursor, Claude Code, Gemini, CodeRabbit
+
 **Cloud & Infrastructure**
-AWS (EC2, S3, Lambda, CloudFront), Docker, Kubernetes, CI/CD, Prometheus, Grafana
+AWS (EC2, S3, Lambda, CloudFront), Docker, Kubernetes, CI/CD (GitHub Actions, Jenkins), Prometheus, Grafana
 
-**Soft Skills**
-Leadership, System Design, Mentorship, Collaboration
+**Languages & Soft Skills**
+English (Fluent), Spanish (Native), Leadership, System Design, Mentorship, Collaboration
 
-#### 4. Projects (Optional but Recommended)
-Showcase 2-3 key projects with:
-- Project name
-- Tech stack used
-- Brief description
-- Key achievement/metric
-- Link (if available) or "Private/Enterprise"
+#### 4. Projects (Required - Primary Focus)
+This section showcases personal projects and side work with detailed descriptions, technical implementations, and links to repositories or live demos.
 
-Suggested projects to highlight:
-- Data platform at Apptegy (microservices, scalability)
-- Geolocation platform at Bengala (real-time systems)
-- AR/VR training solution at Softtek (innovation)
+**Project Structure:**
+Each project should include:
+- **Project name** and tagline
+- **Tech stack** (with technology badges/chips)
+- **Detailed description** (3-5 paragraphs explaining the problem, solution, and implementation)
+- **Key features** (bulleted list of main capabilities)
+- **Technical highlights** (architecture decisions, interesting challenges solved)
+- **Links**: GitHub repository (if public) or "Private/Enterprise", Live demo (if available)
+- **Optional**: Screenshots, demo GIFs, or embedded interactive demos
+
+**Example Projects to Include:**
+
+1. **Alethi Women's Script Translator** ✅
+   - Tech: Next.js, TypeScript, SVG, Tailwind CSS
+   - A web application that translates English to the fictional Alethi Women's Script from Brandon Sanderson's "The Stormlight Archive"
+   - Features: Phonetic translation engine, SVG rendering, export to PNG/SVG, real-time preview
+   - Technical highlights: Custom phoneme mapping algorithm, dynamic SVG generation, coordinate system normalization
+   - Link: GitHub repository, Live demo on GitHub Pages
+
+2. **[Future Project Slot]**
+   - Space for additional personal projects
+   - Could include: CLI tools, open-source contributions, technical experiments
+
+3. **[Future Project Slot]**
+   - Another project showcase opportunity
+
+**Work-Related Projects** (Optional subsection):
+For notable work projects that can be discussed publicly (without violating NDAs):
+- Data platform at Apptegy (microservices, scalability) - high-level overview only
+- Geolocation platform at Bengala (real-time systems) - architecture and results
+- AR/VR training solution at Softtek (innovation) - general approach and tech stack
 
 #### 5. Contact
 - Email: victor.aguilarsnz@gmail.com
@@ -178,22 +208,34 @@ Use Tailwind's spacing scale (4px base unit):
 │  - Name (large, bold)               │
 │  - Title                            │
 │  - Brief intro (2-3 lines)          │
-│  - CTA button                       │
+│  - CTA buttons (View Projects,      │
+│    Contact)                         │
+│                                     │
+├─────────────────────────────────────┤
+│  Projects (PRIMARY SECTION)         │
+│  - Featured project cards           │
+│  - Each with title, description,    │
+│    tech stack, and links            │
+│  - Grid layout (2 cols on desktop)  │
+│  - Click to expand/view details     │
 │                                     │
 ├─────────────────────────────────────┤
 │  Work Experience                    │
-│  - Grid/List of positions           │
+│  - Timeline/List of positions       │
 │  - Company, dates, key achievements │
+│  - Can be more condensed            │
 │                                     │
 ├─────────────────────────────────────┤
 │  Skills                             │
 │  - Grid layout                      │
 │  - Categorized by type              │
+│  - Visual badges/chips              │
 │                                     │
 ├─────────────────────────────────────┤
 │  Contact                            │
 │  - Links (email, LinkedIn, GitHub)  │
 │  - Location                         │
+│  - Simple contact form (optional)   │
 │                                     │
 └─────────────────────────────────────┘
 ```
@@ -203,14 +245,29 @@ Use Tailwind's spacing scale (4px base unit):
 ### Navigation
 - Minimal, fixed at top or sticky
 - Logo/Name on left
-- Navigation links on right (Home, Experience, Skills, Contact)
+- Navigation links on right (Home, Projects, Experience, Skills, Contact)
 - Mobile: Hamburger menu (clean, minimal animation)
+- Active state indicator for current section
 
 ### Cards/Sections
 - Clean borders or subtle shadows
 - Consistent padding (p-6 or p-8)
 - Hover states: subtle scale or border color change
 - No rounded corners (or minimal: rounded-sm)
+
+### Project Cards (Specific)
+- **Layout**: Vertical card with thumbnail image at top
+- **Dimensions**: Consistent aspect ratio (e.g., 16:9 or 4:3 for thumbnail)
+- **Content structure**:
+  - Thumbnail/hero image
+  - Tech stack badges (small chips/pills)
+  - Project title (H3)
+  - One-line description
+  - "View Project" link/button
+- **Hover effect**: Subtle lift (translateY(-4px)) + shadow increase
+- **Border**: 1px solid border, accent color on hover
+- **Responsive**: Full width on mobile, 2 columns on tablet+, 2-3 columns on desktop
+- **Accessibility**: Entire card is clickable, proper focus states
 
 ### Buttons
 - Primary: Solid background with accent color
@@ -293,19 +350,93 @@ module.exports = {
 ### Folder Structure
 ```
 /app
-  /page.tsx (Home)
+  /page.tsx (Home - main landing page)
   /layout.tsx (Root layout)
   /globals.css
+  /projects/
+    /page.tsx (Projects index/gallery)
+    /womens-script/
+      /page.tsx (Alethi Women's Script project page)
+    /[slug]/
+      /page.tsx (Dynamic project detail pages)
 /components
   /Navigation.tsx
   /Hero.tsx
+  /ProjectCard.tsx (Project preview cards)
+  /ProjectDetail.tsx (Expanded project view)
   /WorkExperience.tsx
   /Skills.tsx
   /Contact.tsx
   /Footer.tsx
+  /womens-script/ (Women's Script specific components)
+    /Translator.tsx
+    /ScriptDisplay.tsx
+    /TextInput.tsx
+    /ExportControls.tsx
+/lib
+  /projects.ts (Project data and metadata)
+  /womens-script/ (Women's Script specific logic)
+    /letterDefinitions.ts
+    /phonemeMapper.ts
+    /svgGenerator.ts
+    /heightMarker.ts
 /public
-  /resume.pdf
-  /images (if needed)
+  /images/
+    /projects/ (Project screenshots and images)
+  /svg-assets/ (Women's Script SVG files)
+```
+
+## Project Integration
+
+### Project Pages Architecture
+The portfolio follows a two-tier project display system:
+
+**Tier 1: Project Cards (Homepage)**
+- Grid of project cards on the main page
+- Each card shows: thumbnail, title, tech stack, 1-line description
+- Hover effect reveals "View Project" CTA
+- Click navigates to detailed project page
+
+**Tier 2: Detailed Project Pages**
+- Each project gets its own route: `/projects/[project-slug]`
+- Full project description, architecture details, screenshots
+- For interactive projects (like Women's Script): embedded live demo
+- GitHub repository link and/or live demo link
+- Back to projects navigation
+
+### Women's Script Project Integration
+The Alethi Women's Script translator is both:
+1. **A showcase project** - demonstrates full-stack TypeScript/Next.js skills
+2. **A functional application** - visitors can use it directly on the portfolio
+
+**Implementation approach:**
+- Project card on homepage links to `/projects/womens-script`
+- Dedicated project page with explanation and full translator UI
+- All Women's Script components (Translator, ScriptDisplay, etc.) embedded in the project page
+- Visitors can translate text and export results directly
+- Technical write-up explaining the phoneme mapping algorithm and SVG rendering
+
+### Project Data Structure
+```typescript
+interface Project {
+  slug: string;                    // URL-friendly identifier
+  title: string;                   // Display name
+  tagline: string;                 // One-line description
+  description: string[];           // Array of paragraphs
+  techStack: string[];             // Technologies used
+  features: string[];              // Key features list
+  technicalHighlights: string[];   // Interesting technical details
+  links: {
+    github?: string;               // GitHub repo URL (if public)
+    live?: string;                 // Live demo URL
+    demo?: string;                 // Embedded demo route
+  };
+  thumbnail: string;               // Image for project card
+  images?: string[];               // Additional screenshots
+  status: 'active' | 'archived';   // Current status
+  featured: boolean;               // Show on homepage
+  year: number;                    // Creation year
+}
 ```
 
 ## Deployment
@@ -336,16 +467,43 @@ The portfolio is successful if it:
 
 ## Next Steps
 
-1. Set up Next.js project with TypeScript and Tailwind
-2. Implement base layout and navigation
-3. Build Hero section with your information
-4. Create Work Experience section with grid layout
-5. Add Skills section with categorized tech stack
-6. Implement Contact section
-7. Add subtle animations and interactions
-8. Test responsive behavior
-9. Optimize for performance
-10. Deploy to GitHub Pages
+### Phase 1: Core Portfolio Structure
+1. ✅ Set up Next.js project with TypeScript and Tailwind
+2. ✅ Implement base layout and navigation (with Projects link)
+3. ✅ Build Hero section with your information
+4. Create project data structure (`lib/projects.ts`)
+5. Build ProjectCard component
+6. Create Projects section on homepage (featured projects)
+7. Build Work Experience section (condensed)
+8. Add Skills section with categorized tech stack
+9. Implement Contact section
+
+### Phase 2: Women's Script Project Integration
+1. Create `/app/projects/womens-script/page.tsx`
+2. Implement Women's Script components:
+   - Letter definitions (`lib/womens-script/letterDefinitions.ts`)
+   - Phoneme mapper (`lib/womens-script/phonemeMapper.ts`)
+   - SVG generator (`lib/womens-script/svgGenerator.ts`)
+   - UI components (Translator, ScriptDisplay, TextInput, ExportControls)
+3. Write project description and technical write-up
+4. Add project to featured projects on homepage
+5. Test translator functionality
+6. Add export features (PNG/SVG download)
+
+### Phase 3: Polish & Deployment
+1. Add subtle animations and interactions
+2. Test responsive behavior across devices
+3. Optimize performance (images, code splitting)
+4. SEO optimization (metadata, Open Graph tags)
+5. Accessibility audit (WCAG AA compliance)
+6. Deploy to GitHub Pages
+7. Set up custom domain (optional)
+
+### Phase 4: Additional Projects (Future)
+1. Identify 1-2 more projects to showcase
+2. Create project pages for each
+3. Add to homepage projects section
+4. Continuous updates and improvements
 
 ## Additional Resources
 
@@ -358,11 +516,21 @@ The portfolio is successful if it:
 
 **Remember**: The goal is a clean, professional, fast-loading portfolio that lets your work speak for itself. Every design decision should serve the purpose of clearly communicating your expertise and making it easy for potential employers or collaborators to reach you.
 
-# Alethi Women's Script Translator
+---
+
+# FEATURED PROJECT: Alethi Women's Script Translator
+
+> This section contains the detailed specification for one of the showcase projects that will be featured in the portfolio. This project demonstrates TypeScript/Next.js skills, algorithm design, SVG manipulation, and UI/UX implementation.
 
 ## Project Overview
 
 This is a Next.js web application that translates English text into Alethi Women's Script from Brandon Sanderson's "The Stormlight Archive" series. The script is a phonetic writing system that resembles waveforms and is horizontally symmetrical around a baseline.
+
+**Integration with Portfolio:**
+- Featured as a primary project on the portfolio homepage
+- Dedicated project page at `/projects/womens-script` with full technical write-up
+- Live, interactive translator embedded directly in the project page
+- Demonstrates full-stack development, algorithm design, and visual programming skills
 
 ## About the Writing System
 
@@ -434,29 +602,37 @@ Letters are organized into groups by shape:
 - Create UI components
 - Add export features (PNG, SVG download)
 
-## Project Architecture
+## Project Architecture (Within Portfolio)
+
+This project is integrated into the larger portfolio structure. The relevant files are:
 
 ```
-project-root/
-├── components/
-│   ├── Translator.tsx          # Main UI component
-│   ├── ScriptDisplay.tsx       # Renders the women's script output
-│   ├── TextInput.tsx           # Input area for English text
-│   └── ExportControls.tsx      # Download PNG/SVG buttons
-│
-├── lib/
-│   ├── letterDefinitions.ts    # SVG path data for each phoneme
-│   ├── phonemeMapper.ts        # English → phoneme conversion logic
-│   ├── svgGenerator.ts         # Phonemes → SVG rendering
-│   └── heightMarker.ts         # Height indicator logic
-│
-├── public/
-│   └── [svg-assets/]           # Original SVG files (if stored separately)
-│
-├── styles/
-│   └── script.module.css       # Styling for script display
-│
-└── CLAUDE.MD                   # This file
+/app
+  /projects
+    /womens-script/
+      /page.tsx                  # Project page with embedded translator
+
+/components
+  /womens-script/
+    /Translator.tsx              # Main UI component
+    /ScriptDisplay.tsx           # Renders the women's script output
+    /TextInput.tsx               # Input area for English text
+    /ExportControls.tsx          # Download PNG/SVG buttons
+
+/lib
+  /womens-script/
+    /letterDefinitions.ts        # SVG path data for each phoneme
+    /phonemeMapper.ts            # English → phoneme conversion logic
+    /svgGenerator.ts             # Phonemes → SVG rendering
+    /heightMarker.ts             # Height indicator logic
+
+/public
+  /svg-assets/
+    /womens-script/              # Original SVG files for letters
+  /images/
+    /projects/
+      /womens-script-thumbnail.png  # Project card image
+      /womens-script-demo.gif       # Demo animation (optional)
 ```
 
 ## Data Structures
@@ -621,12 +797,91 @@ Libraries to consider:
 
 ---
 
+---
+
+# ADDING FUTURE PROJECTS
+
+## Project Template Structure
+
+When adding a new project to the portfolio, follow this structure:
+
+### 1. Add Project Metadata
+In `/lib/projects.ts`:
+```typescript
+{
+  slug: 'project-slug',
+  title: 'Project Name',
+  tagline: 'One-line description for cards',
+  description: [
+    'First paragraph explaining the problem...',
+    'Second paragraph about the solution...',
+    'Third paragraph about implementation...',
+  ],
+  techStack: ['Next.js', 'TypeScript', 'etc'],
+  features: [
+    'Key feature 1',
+    'Key feature 2',
+  ],
+  technicalHighlights: [
+    'Interesting technical challenge 1',
+    'Interesting technical challenge 2',
+  ],
+  links: {
+    github: 'https://github.com/username/repo',
+    live: 'https://live-demo.com',
+  },
+  thumbnail: '/images/projects/project-thumbnail.png',
+  status: 'active',
+  featured: true,
+  year: 2025,
+}
+```
+
+### 2. Create Project Page
+`/app/projects/[slug]/page.tsx` with:
+- Project header (title, tech stack, links)
+- Description sections
+- Screenshots or demo
+- Technical write-up
+- For interactive projects: embedded component
+- Link back to projects
+
+### 3. Add Assets
+- Thumbnail image (16:9 ratio, ~1200x675px)
+- Screenshot images
+- Demo GIF (optional)
+
+### 4. Update Homepage
+The project will automatically appear if `featured: true`
+
+## Project Ideas to Consider
+
+- **CLI Tools**: Command-line utilities you've built
+- **Open Source Contributions**: Significant PRs or contributions
+- **Technical Experiments**: Interesting technical deep-dives
+- **Data Visualizations**: Interactive data projects
+- **API Projects**: Interesting API integrations or wrappers
+- **Algorithm Implementations**: Visual algorithm explainers
+- **Game Projects**: Small games or interactive experiences
+
+---
+
 ## Notes for Future Claude Sessions
 
 When continuing work on this project:
 1. Read this file first to understand the project context
-2. Check the "Current Phase" section to see where we left off
-3. Review any "Questions to Resolve" that might need user input
-4. Update status sections as work progresses
+2. The portfolio is now focused on **showcasing projects**, not just listing experience
+3. Check the "Current Phase" section to see where we left off
+4. Review any "Questions to Resolve" that might need user input
+5. Update status sections as work progresses
 
-The user has all SVG assets ready to use. Focus should be on implementing the translation pipeline and UI.
+### Current Portfolio Structure:
+- **Main Portfolio**: Professional portfolio website (this document)
+- **Featured Project #1**: Alethi Women's Script Translator (detailed spec below)
+- **Future Projects**: Space for 2-3 more projects
+
+### Implementation Priority:
+1. Core portfolio structure (Hero, Navigation, Projects section)
+2. Women's Script project integration
+3. Work Experience and Skills sections
+4. Additional projects as they're developed

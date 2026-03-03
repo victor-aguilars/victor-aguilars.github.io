@@ -21,9 +21,10 @@ export default function Hero() {
           </h2>
 
           <p className="text-lg sm:text-xl text-text/80 mb-6 leading-relaxed max-w-3xl">
-            8+ years designing and scaling distributed systems, cloud-native applications,
+            9+ years designing and scaling distributed systems, cloud-native applications,
             and high-throughput services. Strong experience with API design, performance
-            optimization, and microservice architecture.
+            optimization, and microservice architecture. Proven ability to drive cross-team
+            initiatives, mentor engineers, and deliver systems that support millions of users.
           </p>
 
           <p className="text-base sm:text-lg text-text/70 mb-12">
@@ -31,24 +32,24 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector('#projects');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-8 py-4 bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-200 text-center"
+            >
+              View Projects
+            </a>
+
             <button
               onClick={scrollToContact}
-              className="px-8 py-4 bg-primary text-white font-medium hover:bg-primary/90 transition-colors duration-200"
+              className="px-8 py-4 border-2 border-text text-text font-medium hover:bg-text hover:text-white transition-colors duration-200"
             >
               Get in Touch
             </button>
-
-            <a
-              href="#experience"
-              onClick={(e) => {
-                e.preventDefault();
-                const element = document.querySelector('#experience');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-4 border-2 border-text text-text font-medium hover:bg-text hover:text-white transition-colors duration-200 text-center"
-            >
-              View Experience
-            </a>
           </div>
         </div>
 

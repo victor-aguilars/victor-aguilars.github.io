@@ -17,6 +17,9 @@ import {
   UserCircle,
   Network,
   MessageSquare,
+  Bot,
+  Sparkles,
+  Languages,
 } from 'lucide-react';
 
 const skillCategories = [
@@ -33,6 +36,7 @@ const skillCategories = [
       { name: 'Elasticsearch', icon: Search },
       { name: 'Kafka', icon: Zap },
       { name: 'RabbitMQ', icon: Zap },
+      { name: 'Supabase', icon: Database },
     ],
   },
   {
@@ -49,6 +53,15 @@ const skillCategories = [
     ],
   },
   {
+    title: 'AI & Development Tools',
+    skills: [
+      { name: 'Cursor', icon: Bot },
+      { name: 'Claude Code', icon: Sparkles },
+      { name: 'Gemini', icon: Sparkles },
+      { name: 'CodeRabbit', icon: Bot },
+    ],
+  },
+  {
     title: 'Cloud & Infrastructure',
     skills: [
       { name: 'AWS EC2', icon: Cloud },
@@ -57,14 +70,17 @@ const skillCategories = [
       { name: 'CloudFront', icon: Cloud },
       { name: 'Docker', icon: Container },
       { name: 'Kubernetes', icon: Box },
-      { name: 'CI/CD', icon: GitBranch },
+      { name: 'GitHub Actions', icon: GitBranch },
+      { name: 'Jenkins', icon: GitBranch },
       { name: 'Prometheus', icon: Activity },
       { name: 'Grafana', icon: BarChart3 },
     ],
   },
   {
-    title: 'Soft Skills',
+    title: 'Languages & Soft Skills',
     skills: [
+      { name: 'English (Fluent)', icon: Languages },
+      { name: 'Spanish (Native)', icon: Languages },
       { name: 'Leadership', icon: Users },
       { name: 'System Design', icon: Network },
       { name: 'Mentorship', icon: UserCircle },
@@ -81,7 +97,7 @@ export default function Skills() {
           Skills & Expertise
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <div
               key={index}
