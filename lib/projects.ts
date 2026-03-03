@@ -21,6 +21,39 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'womens-script',
+    title: 'Alethi Women\'s Script Translator',
+    tagline: 'Translate English to the fictional Alethi Women\'s Script from The Stormlight Archive',
+    description: [
+      'A web application that translates English text into the Alethi Women\'s Script, a fictional phonetic writing system from Brandon Sanderson\'s epic fantasy series "The Stormlight Archive". The script is visually distinctive, resembling waveforms and featuring horizontal symmetry around a baseline.',
+      'The project implements a complete phonetic translation engine that maps English characters to Alethi phonemes, following the linguistic rules established in the books. The translation process handles multi-character phonemes (ch, sh, th), special character mappings (c→s/k, q→k, x→ks), and maintains the visual characteristics of the original writing system.',
+      'The translator features real-time preview, SVG-based rendering for crisp output at any scale, and export functionality to save translations as PNG or SVG files. The implementation demonstrates advanced SVG manipulation, coordinate system normalization, and algorithmic text processing.',
+    ],
+    techStack: ['Next.js', 'TypeScript', 'SVG', 'Tailwind CSS'],
+    features: [
+      'Real-time English to Alethi phonetic translation',
+      'Dynamic SVG generation with proper scaling and spacing',
+      'Export to PNG and SVG formats',
+      'Responsive design for mobile and desktop',
+      'Interactive preview with customization options',
+    ],
+    technicalHighlights: [
+      'Custom phoneme mapping algorithm with context-sensitive rules',
+      'SVG path manipulation and coordinate system normalization',
+      'Height marker system for proper character scaling',
+      'Efficient rendering pipeline for complex character compositions',
+    ],
+    links: {
+      demo: '/projects/womens-script',
+      github: 'https://github.com/victor-aguilars/womens-script-translator', // Update with actual repo when published
+    },
+    thumbnail: '', // TODO: Add thumbnail image
+    status: 'active',
+    featured: true,
+    year: 2025,
+    category: 'personal',
+  },
+  {
     slug: 'persona-architect',
     title: 'Persona Architect',
     tagline: 'Stop sounding like an AI. Start sounding like yourself.',
@@ -53,37 +86,36 @@ export const projects: Project[] = [
     category: 'open-source',
   },
   {
-    slug: 'womens-script',
-    title: 'Alethi Women\'s Script Translator',
-    tagline: 'Translate English to the fictional Alethi Women\'s Script from The Stormlight Archive',
+    slug: 'git-commit-animations',
+    title: 'Git Commit Animations',
+    tagline: 'Dramatic, themed animations for your Git commits in VS Code',
     description: [
-      'A web application that translates English text into the Alethi Women\'s Script, a fictional phonetic writing system from Brandon Sanderson\'s epic fantasy series "The Stormlight Archive". The script is visually distinctive, resembling waveforms and featuring horizontal symmetry around a baseline.',
-      'The project implements a complete phonetic translation engine that maps English characters to Alethi phonemes, following the linguistic rules established in the books. The translation process handles multi-character phonemes (ch, sh, th), special character mappings (c→s/k, q→k, x→ks), and maintains the visual characteristics of the original writing system.',
-      'The translator features real-time preview, SVG-based rendering for crisp output at any scale, and export functionality to save translations as PNG or SVG files. The implementation demonstrates advanced SVG manipulation, coordinate system normalization, and algorithmic text processing.',
+      'A Visual Studio Code extension that transforms routine Git commits into celebratory moments with dramatic, themed animations. Every time you commit changes, the extension displays visually engaging animations inspired by popular gaming franchises like Dark Souls.',
+      'The extension features multiple animation themes including the iconic Dark Souls "YOU DIED" screen and "BONFIRE LIT" celebration. It automatically detects commits across various methods—whether through VS Code\'s UI, terminal commands, or Git extensions—and triggers the appropriate animation.',
+      'Built with TypeScript and the VS Code Extension API, the project demonstrates practical extension development, event handling, and creative UI implementation within editor constraints. All animations are fully customizable with adjustable duration, custom text, and enable/disable toggles.',
     ],
-    techStack: ['Next.js', 'TypeScript', 'SVG', 'Tailwind CSS'],
+    techStack: ['TypeScript', 'VS Code Extension API', 'Webview', 'Git'],
     features: [
-      'Real-time English to Alethi phonetic translation',
-      'Dynamic SVG generation with proper scaling and spacing',
-      'Export to PNG and SVG formats',
-      'Responsive design for mobile and desktop',
-      'Interactive preview with customization options',
+      'Automatic Git commit detection across all commit methods',
+      'Multiple themed animations (Dark Souls, Bonfire, and more)',
+      'Fully customizable text, duration, and animation settings',
+      'Manual test command for previewing animations',
+      'Lightweight and non-intrusive developer experience',
     ],
     technicalHighlights: [
-      'Custom phoneme mapping algorithm with context-sensitive rules',
-      'SVG path manipulation and coordinate system normalization',
-      'Height marker system for proper character scaling',
-      'Efficient rendering pipeline for complex character compositions',
+      'VS Code Extension API integration and lifecycle management',
+      'Git event detection and hook implementation',
+      'Webview-based animation rendering system',
+      'Theme architecture for extensible animation library',
     ],
     links: {
-      demo: '/projects/womens-script',
-      github: 'https://github.com/victor-aguilars/womens-script-translator', // Update with actual repo when published
+      github: 'https://github.com/victor-aguilars/git-commit-animations',
     },
     thumbnail: '', // TODO: Add thumbnail image
     status: 'active',
     featured: true,
     year: 2025,
-    category: 'personal',
+    category: 'open-source',
   },
   // Template for future projects
   // {
