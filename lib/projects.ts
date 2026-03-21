@@ -44,8 +44,8 @@ export const projects: Project[] = [
       'Efficient rendering pipeline for complex character compositions',
     ],
     links: {
-      demo: '/projects/womens-script',
-      github: 'https://github.com/victor-aguilars/womens-script-translator', // Update with actual repo when published
+      live: 'https://alethi-translator.vercel.app',
+      github: 'https://github.com/victor-aguilars/womens-script-translator',
     },
     thumbnail: '', // TODO: Add thumbnail image
     status: 'active',
@@ -116,6 +116,38 @@ export const projects: Project[] = [
     featured: true,
     year: 2025,
     category: 'open-source',
+  },
+  {
+    slug: 'mentora',
+    title: 'Mentora',
+    tagline: 'An AI learning companion that generates personalized study plans and guides you through any learning goal',
+    description: [
+      'A web-based AI learning companion that acts as a personal instructor. Given a learning goal — whether LeetCode interview prep, cooking, or language learning — the agent generates a personalized study plan, curates resources, and guides the student through their learning journey with motivation and structure.',
+      'Mentora\'s core value is the instructional experience: a warm, specific, adaptive guide that keeps the learner moving forward. The AI instructor generates sequenced, phased study plans based on goals, timelines, and current skill level, then surfaces focused resources and adapts the plan based on self-reported progress.',
+      'The platform includes session-based learning with confidence tracking, WhatsApp notifications for daily nudges and check-ins, calendar integration via .ics events, and a hybrid resource strategy combining curated recommendations, web search, and user-uploaded materials.',
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Supabase', 'Claude API', 'Tailwind CSS', 'Twilio'],
+    features: [
+      'AI-generated personalized study plans with phased roadmaps',
+      'Adaptive learning sessions with instructor explanations and curated resources',
+      'Self-reported progress tracking with plan adjustments',
+      'WhatsApp daily nudges and evening check-ins via Twilio',
+      'Calendar event generation with .ics email delivery',
+    ],
+    technicalHighlights: [
+      'Claude streaming API with Next.js ReadableStream for real-time plan generation',
+      'Hybrid resource strategy: curated base layer + Tavily web search + user uploads',
+      'Supabase Auth, PostgreSQL with pgvector, and Edge Functions for cron jobs',
+      'Isolated agent module architecture for independent AI logic development',
+    ],
+    links: {
+      live: 'https://getmentora.com',
+    },
+    thumbnail: '',
+    status: 'active',
+    featured: true,
+    year: 2025,
+    category: 'personal',
   },
   // Template for future projects
   // {
