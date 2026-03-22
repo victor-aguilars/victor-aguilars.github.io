@@ -1,82 +1,96 @@
 'use client';
 
-import { useState } from 'react';
-import { Menu, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu, Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
 ];
 
 export default function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { setTheme, resolvedTheme } = useTheme();
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b z-50">
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo/Name */}
-          <a href="#home" className="text-xl font-bold text-text hover:text-primary transition-colors duration-200">
+          <Link href="/" className="text-xl font-bold hover:text-primary transition-colors duration-200">
             VAAS
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-text hover:text-primary transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const element = document.querySelector(link.href);
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                className={cn(
+                  "text-sm font-medium transition-colors duration-200 hover:text-primary link-underline",
+                  pathname === link.href ? "text-primary" : "text-muted-foreground"
+                )}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-text hover:text-primary transition-colors duration-200"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile */}
+          <div className="flex items-center gap-2 md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="Open menu">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-64">
+                <nav className="flex flex-col gap-4 mt-8">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "text-lg font-medium transition-colors duration-200 hover:text-primary",
+                        pathname === link.href ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
-          <div className="px-6 py-4 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block text-base font-medium text-text hover:text-primary transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const element = document.querySelector(link.href);
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                  setMobileMenuOpen(false);
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }

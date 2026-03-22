@@ -146,7 +146,7 @@ export const projects: Project[] = [
     thumbnail: '',
     status: 'active',
     featured: true,
-    year: 2025,
+    year: 2026,
     category: 'personal',
   },
   // Template for future projects

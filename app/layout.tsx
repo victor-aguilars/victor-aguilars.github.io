@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,13 +13,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VAAS | Projects",
-  description: "Next.js projects by Víctor Aguilar. Portfolio, experiments, and web applications.",
-  keywords: ["Software Engineer", "Distributed Systems", "Cloud Native", "Ruby on Rails", "Vue.js", "React", "Backend Engineering", "Next.js"],
-  authors: [{ name: "VAAS" }],
+  title: "VAAS",
+  description: "Projects and blog by Víctor Aguilar.",
+  keywords: ["Software Engineer", "Projects", "Blog", "Next.js", "TypeScript"],
+  authors: [{ name: "Víctor Aguilar" }],
   openGraph: {
-    title: "VAAS | Projects",
-    description: "Next.js projects by Víctor Aguilar. Portfolio, experiments, and web applications.",
+    title: "VAAS",
+    description: "Projects and blog by Víctor Aguilar.",
     type: "website",
   },
 };
@@ -29,9 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className="font-sans">
-        {children}
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
+      <body className="font-sans min-h-screen flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navigation />
+          <main className="flex-1 pt-16">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -11,4 +11,4 @@ Built with Next.js, TypeScript, and Tailwind CSS.
 
 ---
 
-© 2025 Víctor Aguilar
+© 2026 Víctor Aguilar
