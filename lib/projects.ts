@@ -45,7 +45,6 @@ export const projects: Project[] = [
     ],
     links: {
       live: 'https://alethi-translator.vercel.app',
-      github: 'https://github.com/victor-aguilars/womens-script-translator',
     },
     thumbnail: '', // TODO: Add thumbnail image
     status: 'active',
