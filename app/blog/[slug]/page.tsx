@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -60,7 +61,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <Separator className="mb-8" />
 
           <div className="prose prose-neutral dark:prose-invert max-w-none">
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
           </div>
         </AnimatedSection>
       </div>
