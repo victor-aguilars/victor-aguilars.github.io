@@ -1,0 +1,121 @@
+---
+title: "Building Mentora"
+date: "2026-03-23"
+description: "How I built Mentora's AI layer: choosing models, streaming responses, taming token costs, and making Claude stop saying 'Great question!'"
+tags: ["ai", "mentora", "claude", "nextjs"]
+published: true
+---
+
+# Building Mentora
+
+## Why I Built This
+
+I have a habit. Every week I block off time in my calendar to learn something. Could be a paper, a new framework, a concept I've been avoiding since grad school. It started as a discipline thing, but somewhere along the way it became one of the more grounding parts of my week. There is something genuinely satisfying about deliberately setting aside an hour to understand something instead of just scrolling past it.
+
+The internet makes this both easier and harder than it should be. Easier because everything is out there. Harder because the path from "I want to learn X" to "I actually understand X" runs directly through several rabbit holes, five browser tabs you'll never close, and a YouTube recommendation algorithm that would very much like you to watch a video about something else entirely. I wanted to build something that collapses that path.
+
+Mentora is an AI-powered learning companion. You tell it what you want to learn, how much time you have, and where you're starting from. It builds a structured study plan, breaks it into focused topics, and teaches each one with the kind of direct, no-filler instruction you would get from a knowledgeable friend who respects your time. I also wanted to experiment with AI-enabled product development beyond toy examples. This seemed like a reasonable way to do both at once.
+
+## Picking a Model (And Sticking With It)
+
+The first real decision in any AI project is model selection, and the adjacent temptation is to build a routing layer where cheap tasks use small models and expensive tasks use big ones. I did not do that. Mentora uses Claude Sonnet 4.6 for everything.
+
+The reasoning is straightforward, even if the tradeoff is not. Sonnet 4.6 is capable enough to write genuinely useful instructional content and fast enough that streaming feels responsive. Running everything through a single model means one client, one configuration path, one set of behaviors to reason about. When you are building a product alone, operational simplicity is a feature.
+
+The honest cost is that some tasks do not need that much model. Generating a short phase title or validating that a goal is sensible does not require the same capacity as writing a nuanced two-paragraph explanation of dynamic programming. You eat the token cost either way. For where Mentora is right now, that is an acceptable exchange for not maintaining a routing layer. When call volume grows, that math changes.
+
+## The Token Budget Game
+
+Not all Claude calls are equal, and treating them that way wastes money and adds latency. I set `max_tokens` and `temperature` by task type rather than using a single global default.
+
+| Task | max_tokens | temperature |
+|------|-----------|-------------|
+| Generate plan phases | 1024 | 0.7 |
+| Generate topics per phase | 2048 | 0.7 |
+| Stream session content | 4096 | 0.8 |
+| Generate check-in | 1024 | 0.8 |
+
+The pattern is intentional. Structured JSON outputs (phases, topics) get lower temperature because you want consistent, predictable schemas. The model hallucinating a creative interpretation of what a JSON array should look like is not useful. Instructional content and check-ins get higher temperature because the output should vary, feel natural, and not read like the same response every time.
+
+The two-step plan generation is where things get interesting. Rather than asking Claude for a complete study plan (phases and all their topics) in a single call, I split it. Step one generates the phase skeleton and returns quickly. The user sees their plan outline in a few seconds. Step two generates topics for each phase and runs incrementally as the user expands phases. This means the initial feedback loop is fast and the heavy work happens in the background, distributed across smaller calls.
+
+Caching is the other half of the equation. Session content is expensive to generate and deterministic enough to cache. After a topic's content is generated for the first time, it gets stored in a Supabase JSONB column. Every subsequent visit returns the cached version instantly without touching the API. Failed generations get cached too, with a `_failed` marker so reloads do not trigger retry loops. If someone wants to force a regeneration, they can pass `force: true` to clear the marker.
+
+## Streaming Without Losing Your Mind
+
+Session content has a structural problem. The instructional explanation should stream as it arrives so the user sees content progressively. But the metadata, key points, resources, a practice prompt, needs to arrive as a complete, parseable object. You cannot stream half a JSON array and call it done.
+
+The solution I landed on is a delimiter-based format. Claude writes the full explanation as plain text, then outputs a separator line, then outputs a JSON object with the metadata:
+
+```
+Your explanation here...
+
+---SESSION_DATA---
+
+{"keyPoints": [...], "resources": [...], "practicePrompt": "..."}
+```
+
+The stream handler buffers everything and emits explanation chunks in real time. Once it sees `---SESSION_DATA---`, it stops emitting text events and waits for the full JSON. When the stream closes, it parses the metadata and emits a final `done` event with everything.
+
+There is one subtle issue. If you stream every byte as it arrives, you risk accidentally sending the first few characters of the delimiter as explanation text before you realize it is the delimiter. The fix is a safety margin: hold back `DELIMITER.length + 2` characters at all times. Only flush up to that offset. When the real delimiter appears in the buffer, you have not committed any of it to the client yet.
+
+```typescript
+const safeEnd = buffer.length - DELIMITER.length - 2
+if (safeEnd > sentUpTo) {
+  enqueue(controller, { type: 'text', content: buffer.slice(sentUpTo, safeEnd) })
+  sentUpTo = safeEnd
+}
+```
+
+The other thing worth calling out is how caching works alongside streaming. The API route starts the response stream immediately so the client gets content as fast as possible. But I also return a `contentPromise` from the stream function, which resolves when the stream ends. A `.then()` on that promise writes to Supabase in the background, completely decoupled from the HTTP response lifecycle. The client is long done receiving content before the database write even starts.
+
+If Claude hits `max_tokens` before finishing the JSON metadata, the handler catches the parse error, logs a warning, and sends the explanation with empty metadata rather than an error. The user gets something useful even in the failure case.
+
+## Making AI Not Sound Like AI
+
+This is the part I enjoyed most and also found most annoying to get right.
+
+AI language models have learned from a lot of text written by other AI language models trying to sound helpful. The result is a set of learned verbal habits that are instantly recognizable and slightly grating. "Great question!" "Let's dive in!" "Absolutely!" The em dash used in every other sentence for no apparent reason. The three-part list that ends with an inspirational summary. These patterns are technically harmless but they make the output feel hollow.
+
+I centralized the tone guidance in a `voice.ts` module that every agent function calls through a `rolePrefix()` function. Every Claude call starts with the same identity framing and the same list of prohibited patterns:
+
+```typescript
+const VOICE_GUIDE = `
+VOICE RULES - follow these strictly:
+- Never open with "Great question!", "Absolutely!", "Let's dive in!", "So,", or any preamble.
+- Never use: "I'm excited to", "on this journey", "you've got this", "straightforward"
+- Never use em dashes. Use commas, periods, or semicolons instead.
+- Write the way a smart friend who happens to be an expert would talk.
+- Vary sentence length. Use fragments when they hit harder.
+- Avoid exclamation marks except in genuinely exciting moments. One per response max.`
+```
+
+The centralization matters. If this guidance lived inside each prompt, it would drift. Someone would update one file and forget two others. Having a single `rolePrefix()` call that every agent goes through means the voice is consistent across plan generation, session content, check-ins, and resource curation.
+
+The structural variability instruction is the one I am most pleased with: "Do NOT use a predictable structure every time. Sometimes lead with an example. Sometimes lead with the misconception." This keeps session content from feeling templated even after you have read several topics. It is a small instruction with a disproportionate effect on perceived quality.
+
+## Guardrails: Keeping Things on the Rails
+
+LLMs need guardrails at multiple levels. I have a few in place.
+
+User input sanitization wraps every piece of user-provided content in `<user-input>` XML tags with an explicit system prompt instruction not to follow any commands embedded within them. This is a prompt injection defense. It is not foolproof, but it raises the bar considerably and makes it explicit in the prompt structure where the trust boundary is.
+
+Goal validation happens at the model level. Before generating any plan content, the system prompt instructs Claude to evaluate whether the goal is something a meaningful study plan can be built for. If not, it returns a structured refusal:
+
+```json
+{ "refused": true, "reason": "A short, friendly explanation of why you can't build a plan for this." }
+```
+
+The API route handles this as a 422 with a `REFUSED` code. Session content generation has the same mechanism. This means "learn to breathe" and "become a wizard" do not produce five phases and fifteen topics. They produce a polite explanation of why that is not a learning goal.
+
+Rate limiting runs on Upstash Redis with a sliding window per user. Plan generation allows 5 requests per 60 seconds; session and topic generation allows 10. If Redis is not configured (local development), rate limiting is skipped entirely so you are not blocked by infrastructure requirements in dev. If Redis fails in production, the request is allowed through rather than rejected. Fail open for availability, not fail closed for strictness.
+
+The concurrency protection is the piece most people miss until they need it. If a user refreshes the page while plan generation is in progress, you do not want two simultaneous Claude calls producing duplicate plans. The `generation_status` column handles this with an atomic update: the API sets status to `generating` only if it is currently `pending` or `failed`. If another request comes in while generation is running, the atomic update fails and the route returns `{ alreadyGenerating: true }`. One call proceeds. The rest wait.
+
+## What's Next
+
+The core loop works. You set a goal, get a plan, work through topics, get feedback. But there is an obvious gap in the current experience: what happens when you are stuck mid-session and the explanation is not clicking? Right now, you close the tab and go search somewhere else. The next thing on the roadmap is chat within sessions, so you can ask follow-up questions, request a different example, or just say "this is not making sense" and get an actual response from the instructor. That changes the product from a content delivery system to something closer to a real tutoring session, and it opens up a genuinely interesting AI problem: how do you keep a multi-turn conversation grounded in the specific topic without letting it drift into a generic Q&A.
+
+The other two pieces in the queue are more operational. WhatsApp and SMS reminders will handle the nudge layer, a morning message with what is on deck and a check-in at night. This is the part that keeps a learning habit alive past the initial motivation spike. Building it well means thinking carefully about when not to send a message, which is a different problem than building the message itself. The third item is user-uploaded resources, which adds a layer of personalization and opens up the teacher use case: someone who wants to build a course on top of their own materials rather than relying on Claude's general knowledge.
+
+None of these are particularly exotic from a technical standpoint. The interesting part is how they interact with the AI layer and where the model can add genuine value versus where it just adds latency. That is the question I keep coming back to, and it is the main reason I keep building.
