@@ -1,0 +1,82 @@
+---
+title: "promptocop: Static Analysis for Prompts"
+date: "2026-03-28"
+description: "I built a prompt linter that catches vague verbs, missing success criteria, and ambiguous pronouns before they reach the model."
+tags: ["ai", "claude", "tools", "dx"]
+published: true
+---
+
+# promptocop: Static Analysis for Prompts
+
+The moment I realized I needed a prompt linter was when I typed "refactor the auth module" for the third time in a row, each time adding more words to explain what I actually meant. The first attempt yielded a cosmetic rename. The second got me an extracted class I did not ask for. By the third, I had spent more tokens on correction than the task warranted.
+
+The problem was not that the model was bad. The problem was that "refactor" is not an instruction, it is a category of instruction. Without a target and an end state, it means approximately nothing.
+
+## The Anti-Patterns That Cost Tokens
+
+There are a handful of prompt patterns that consistently cause drift, over-reach, or correction loops. I built [promptocop](https://github.com/vhaguilar/promptocop) around the ones I hit most often.
+
+**Vague action verbs.** "Fix", "improve", "clean up", "handle" without a qualifier leave the model to fill in the blank. Sometimes it guesses right. Usually it guesses something adjacent to right, which requires a correction that requires another prompt that requires more tokens. The `no-vague-verb` rule flags these unless followed by a file path, a backtick-quoted identifier, or a "so that" clause:
+
+```typescript
+const QUALIFIER_PATTERNS = [
+  /[./\\][a-zA-Z0-9_/\\.-]+/,       // file paths
+  /`[^`]+`/,                          // backtick-quoted identifiers
+  /["'][^"']{3,}["']/,                // quoted strings
+  /\b(so that|to ensure|in order to)\b/i,
+];
+```
+
+"Refactor the auth module" fires the rule. "Refactor the auth module to use a single `validateToken()` instead of the inline checks in the route handlers" does not.
+
+**Missing success criteria.** Without a definition of done, the model does not know when to stop. It will keep going until something feels complete, which may be well past what you wanted or well short of it. The `missing-success-criteria` rule scans for any of eight patterns, from "so that" clauses to test-oriented language to "should return". If none are present in a prompt longer than 40 characters, it fires.
+
+```typescript
+const SUCCESS_PATTERNS = [
+  /\bso that\b/i,
+  /\b(verify that|confirm that|ensure that)\b/i,
+  /\b(should return|should output|should contain)\b/i,
+  /\b(done when|complete when|definition of done)\b/i,
+  // ...
+];
+```
+
+"Add authentication to the API" fails. "Add authentication so that requests without a valid JWT return 401 and the existing tests still pass" passes.
+
+**Ambiguous pronouns.** "Fix it", "update this", "change that" are the prompt equivalent of a variable named `data`. The `no-ambiguous-pronoun` rule matches action verb patterns followed by a pronoun with no referent, which turns out to be a surprisingly common way to start a correction prompt when you are annoyed that the previous one did not work.
+
+## The Hook Architecture
+
+The interesting design question was not what to flag, but what to do with the flags.
+
+A blocking approach, where the hook refuses to submit the prompt until violations are resolved, was never on the table. It would be patronizing, it would slow down the feedback loop, and it would be wrong some percentage of the time. Rules are heuristics, not contracts. Sometimes "fix it" is perfectly clear from context.
+
+Instead, promptocop runs as a `UserPromptSubmit` hook in Claude Code and injects violations as advisory context before the model sees the prompt. The hook exits 0 every time. Nothing is blocked. The model gets the original prompt plus a structured annotation describing what it found, and it can factor that into its response however it sees fit.
+
+The hook output is formatted with the model as the intended reader, not a human. The `directive` formatter groups violations by severity and writes actual instructions:
+
+```typescript
+const PREAMBLES: Record<string, string> = {
+  error: 'MUST clarify before acting:',
+  warn: 'Mention to the user if not obvious from context:',
+  info: 'Suggest if relevant:',
+};
+
+const preamble = hasErrors
+  ? "[promptocop] The user's prompt is missing critical information. DO NOT guess or investigate autonomously — ask the user to clarify the items marked MUST below before proceeding."
+  : "[promptocop] The user's prompt may be underspecified. Factor the items below into your response — mention gaps to the user where relevant.";
+```
+
+Each rule that contributes to hook output implements a `directive()` method that generates the specific instruction. For `no-vague-verb`, that looks like: "Ask the user what specifically they want to `refactor` — what file, function, or component, and what the end state should look like." The model then asks the clarifying question rather than guessing.
+
+This turned out to be a better interface than I expected. The model treats the injected context like any other context in the conversation window. It weighs it against what it already knows from the thread, makes a judgment call, and either asks or proceeds. If the violation is clearly a non-issue given the surrounding context, it proceeds. If it genuinely does not have enough information, it asks. That is the right behavior.
+
+Installing the hook takes one command:
+
+```bash
+npx promptocop hook install
+```
+
+Which writes the appropriate entry into `~/.claude/settings.json`. Cursor is also supported via `--target cursor`.
+
+The source is on [GitHub](https://github.com/vhaguilar/promptocop). The rules are pure functions, easy to extend, and there are eight of them to start.
