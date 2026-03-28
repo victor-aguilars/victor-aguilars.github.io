@@ -14,7 +14,7 @@ The problem was not that the model was bad. The problem was that "refactor" is n
 
 ## The Anti-Patterns That Cost Tokens
 
-There are a handful of prompt patterns that consistently cause drift, over-reach, or correction loops. I built [promptocop](https://github.com/vhaguilar/promptocop) around the ones I hit most often.
+There are a handful of prompt patterns that consistently cause drift, over-reach, or correction loops. I built [promptocop](https://github.com/victor-aguilars/promptocop) around the ones I hit most often.
 
 **Vague action verbs.** "Fix", "improve", "clean up", "handle" without a qualifier leave the model to fill in the blank. Sometimes it guesses right. Usually it guesses something adjacent to right, which requires a correction that requires another prompt that requires more tokens. The `no-vague-verb` rule flags these unless followed by a file path, a backtick-quoted identifier, or a "so that" clause:
 
@@ -79,4 +79,4 @@ npx promptocop hook install
 
 Which writes the appropriate entry into `~/.claude/settings.json`. Cursor is also supported via `--target cursor`.
 
-The source is on [GitHub](https://github.com/vhaguilar/promptocop). The rules are pure functions, easy to extend, and there are eight of them to start.
+The source is on [GitHub](https://github.com/victor-aguilars/promptocop). The rules are pure functions, easy to extend, and there are eight of them to start.
